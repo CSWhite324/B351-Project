@@ -38,14 +38,14 @@ class Map:
         else:
             return None
 
-    def add_street(self, frm, to, cost = 0):
+    def add_street(self, frm, to, highway, speed = 0):
         if frm not in self.vert_dict:
             self.add_house(frm)
         if to not in self.vert_dict:
             self.add_house(to)
 
-        self.vert_dict[frm].add_neighbor(self.vert_dict[to], cost)
-        self.vert_dict[to].add_neighbor(self.vert_dict[frm], cost)
+        self.vert_dict[frm].add_neighbor(self.vert_dict[to], speed)
+        self.vert_dict[to].add_neighbor(self.vert_dict[frm], speed)
 
     def get_vertices(self):
         return self.vert_dict.keys()
@@ -61,15 +61,15 @@ if __name__ == '__main__':
     g.add_house('e')
     g.add_house('f')
 
-    g.add_street('a', 'b', 7)  
-    g.add_street('a', 'c', 9)
-    g.add_street('a', 'f', 14)
-    g.add_street('b', 'c', 10)
-    g.add_street('b', 'd', 15)
-    g.add_street('c', 'd', 11)
-    g.add_street('c', 'f', 2)
-    g.add_street('d', 'e', 6)
-    g.add_street('e', 'f', 9)
+    g.add_street('a', 'b', False, 7)  
+    g.add_street('a', 'c', True, 9)
+    g.add_street('a', 'f', False, 14)
+    g.add_street('b', 'c', False, 10)
+    g.add_street('b', 'd', False, 15)
+    g.add_street('c', 'd', True, 11)
+    g.add_street('c', 'f', False, 2)
+    g.add_street('d', 'e', True, 6)
+    g.add_street('e', 'f', False, 9)
 
     for v in g:
         for w in v.get_connections():
