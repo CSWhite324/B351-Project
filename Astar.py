@@ -1,24 +1,23 @@
-import heapq
 import math
 
 import MAP
 
 
-def astarHeur(cur_state):
-    # implement Heuristic here
-    return
-
-
-def astarStreet():
-    return
-
-
-def astarHighway():
-    return
-
-
-def astarAll():
-    return
+# def astarHeur(cur_state):
+#     # implement Heuristic here
+#     return
+#
+#
+# def astarStreet():
+#     return
+#
+#
+# def astarHighway():
+#     return
+#
+#
+# def astarAll():
+#     return
 
 
 #########################################
@@ -97,16 +96,18 @@ def a_search(start, goal):
         open_list.pop(current_index)
         closed.append(current_node)
 
+        # if current_node.highway:
+        #     return print("Highway Node: ", current_node.name)
+
         if current_node == goal:
-            # total = 0
-            print(current_node.f)
+            print("The cost is how many minutes it takes to travel the optimal path to the goal node.")
+            print("Cost:", current_node.f)
             path = []
             current = current_node
             while current is not None:
                 path.append(current.name)
-                # total += current.f
+                print("Node:", current.name, "| f(", current.name, ") =", current.f)
                 current = current.parent
-            # print(total)
             return path[::-1]
 
         # loop through children
@@ -115,10 +116,15 @@ def a_search(start, goal):
             for closed_child in closed:
                 if child == closed_child:
                     continue
-            child.g = current_node.g + euclidean_distance(current_node.position, child.position)
-            # child.h = h(child, goal)
+            g_score = current_node.g + (euclidean_distance(current_node.position, child.position) / (child.speed / 60))
+            # if g_score < child.g:
+            child.h = euclidean_distance(child.position, goal.position)
+            child.g = g_score
             child.f = child.g + child.h
             child.parent = current_node
+
+            # if child not in open_list:
+            #    open_list.append(child)
 
             for open_node in open_list:
                 if child == open_node and child.g > open_node.g:
@@ -130,26 +136,51 @@ def a_search(start, goal):
 def main():
     # initialize nodes
     # start node
-    Node_A = MAP.Node('Node A', (0, 0), None, None, 0, 0, 0)
-    Node_B = MAP.Node('Node B', (0, 10), None, None, None, 0, None)
-    Node_C = MAP.Node('Node C', (15, 0), None, None, None, 0, None)
-    Node_D = MAP.Node('Node D', (15, 10), None, None, None, 0, None)
-    # goal node
-    Node_E = MAP.Node('Node E', (10, 10), None, None, None, 0, None)
+    Node_A = MAP.Node('A', False, (0, 0), 0, None, None, 0, 0, 0)
+    Node_B = MAP.Node('B', False, (0, 10), 60, None, None, float('inf'), 0, None)
+    Node_C = MAP.Node('C', False, (20, 0), 60, None, None, float('inf'), 0, None)
+    Node_D = MAP.Node('D', False, (0, 30), 120, None, None, float('inf'), 0, None)
+    Node_E = MAP.Node('E', False, (30, 10), 60, None, None, float('inf'), 0, None)
+    Node_F = MAP.Node('F', True, (20, 40), 320, None, None, float('inf'), 0, None)
+    Node_G = MAP.Node('G', False, (30, 30), 60, None, None, float('inf'), 0, None)
+    Node_H = MAP.Node('H', False, (50, 0), 60, None, None, float('inf'), 0, None)
+    Node_I = MAP.Node('I', False, (40, 40), 60, None, None, float('inf'), 0, None)
+    Node_J = MAP.Node('J', False, (50, 40), 60, None, None, float('inf'), 0, None)
+    Node_K = MAP.Node('K', False, (50, 20), 60, None, None, float('inf'), 0, None)
+    Node_Goal = MAP.Node('Goal', False, (50, 30), 60, None, None, float('inf'), 0, None)
 
     # update heuristics
     # euclidean distance along path to goal with regard to speed limits
-    Node_B.h = euclidean_distance(Node_B.position, Node_E.position) / (25/60)
-    Node_C.h = euclidean_distance(Node_C.position, Node_E.position) / (60/60)
-    Node_D.h = euclidean_distance(Node_D.position, Node_E.position) / (60/60)
+    # Node_B.h = euclidean_distance(Node_B.position, Node_Goal.position) / (20 / 60)
+    # Node_C.h = euclidean_distance(Node_C.position, Node_Goal.position) / (10 / 60)
+    # Node_D.h = euclidean_distance(Node_D.position, Node_Goal.position) / (50 / 60)
+    # Node_E.h = euclidean_distance(Node_E.position, Node_Goal.position) / (40 / 60)
+    # Node_F.h = euclidean_distance(Node_F.position, Node_Goal.position) / (60 / 60)
+    # Node_G.h = euclidean_distance(Node_G.position, Node_Goal.position) / (40 / 60)
+    # Node_H.h = euclidean_distance(Node_H.position, Node_Goal.position) / (30 / 60)
+    # Node_I.h = euclidean_distance(Node_I.position, Node_Goal.position) / (50 / 60)
+    # Node_J.h = euclidean_distance(Node_J.position, Node_Goal.position) / (40 / 60)
+    # Node_K.h = euclidean_distance(Node_K.position, Node_Goal.position) / (30 / 60)
 
     # update neighbors for each node
     Node_A.neighbors = [Node_B, Node_C]
-    Node_B.neighbors = [Node_E]
-    Node_C.neighbors = [Node_D]
-    Node_D.neighbors = [Node_E]
-    Node_E.neighbors = None
+    Node_B.neighbors = [Node_D, Node_E]
+    Node_C.neighbors = [Node_F, Node_H]
+    Node_D.neighbors = [Node_G]
+    Node_E.neighbors = [Node_G]
+    Node_F.neighbors = [Node_I]
+    Node_G.neighbors = [Node_Goal]
+    Node_H.neighbors = [Node_K]
+    Node_I.neighbors = [Node_J]
+    Node_J.neighbors = [Node_Goal]
+    Node_K.neighbors = [Node_Goal]
+    Node_Goal.neighbors = None
 
     # find shortest path from start to goal node
-    path = a_search(Node_A, Node_E)
+    path = a_search(Node_A, Node_Goal)
     print(path)
+
+
+if __name__ == '__main__':
+    main()
+
