@@ -5,12 +5,17 @@ Welcome to the shortest path delivery route project source code!
 This is where all the real fun happens.
 
 The contents of this code include:
+- node class
 - constant variables
 - euclidean distance function
 - heuristic function
 - bellman ford function
 - astar search function
 - main function
+
+The node class defines each node to contain a name, value, highway boolean, its position,
+speed to that node, parent node, list of neighbor nodes, g cost to the node, heuristic estimate
+to the goal node, and f-value.
 
 We only had 1 constant variable to initialize at the beginning of this source code and that
 was a maximum speed variable that was used in the calculation of our heuristic.
