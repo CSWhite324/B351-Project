@@ -3,7 +3,7 @@ import Node
 
 #########################################
 
-# Project A Search / Test Work
+# Shortest Path Project
 
 MAX_SPEED = 70
 
