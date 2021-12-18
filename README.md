@@ -1,4 +1,4 @@
-# Final Project Source Code - B351
+# Final Project Source Code B351
 
 Welcome to the shortest path delivery route project source code!
 
