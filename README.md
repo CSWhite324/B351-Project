@@ -8,6 +8,7 @@ The contents of the Node.py file include:
 - node class
 
 The contents of the Astar.py file include:
+- import statements
 - constant variables
 - euclidean distance function
 - heuristic function
@@ -21,6 +22,8 @@ speed to that node, parent node, list of neighbor nodes, g cost to the node, heu
 to the goal node, and f-value.
 
 # Astar.py
+For this file we needed to import the Node.py file to use the Node class. We also imported the math module.
+
 We only had 1 constant variable to initialize at the beginning of this source code and that
 was a maximum speed variable that was used in the calculation of our heuristic.
 
