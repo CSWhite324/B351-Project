@@ -13,10 +13,12 @@ The contents of this code include:
 - astar search function
 - main function
 
+Node.py:
 The node class defines each node to contain a name, value, highway boolean, its position,
 speed to that node, parent node, list of neighbor nodes, g cost to the node, heuristic estimate
 to the goal node, and f-value.
 
+Astar.py:
 We only had 1 constant variable to initialize at the beginning of this source code and that
 was a maximum speed variable that was used in the calculation of our heuristic.
 
