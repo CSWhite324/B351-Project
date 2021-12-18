@@ -6,6 +6,7 @@ This is where all the real fun happens.
 
 The contents of the Node.py file include:
 - node class
+
 The contents of the Astar.py file include:
 - constant variables
 - euclidean distance function
