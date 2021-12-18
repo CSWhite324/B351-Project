@@ -3,7 +3,7 @@ import Node
 
 #########################################
 
-# Shortest Path Project
+# Project A Search / Test Work
 
 MAX_SPEED = 70
 
@@ -24,7 +24,9 @@ def heuristic(node, goal):
     h = distance / (MAX_SPEED / 60)
     return h
 
-
+# this code has been developed around the implementation found on the "Bellman–Ford algorithm"
+# article on Wikipedia.
+# URL: https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm#Applications_in_routing
 # quick note: this algorithm does not check for negative weight cycles,
 # unlike common implementations, because of our graph
 def bellman_ford(graph, source):
@@ -118,15 +120,15 @@ def main():
     # initialize nodes
 
     Node_1 = Node.Node('1', 1, False, (0, 2), 50, None, None, float('inf'), 0, None)
-    Node_2 = Node.Node('2', 2, False, (.4, 2), 60, None, None, float('inf'), 0, None)
-    Node_3 = Node.Node('3', 3, False, (.8, 2), 70, None, None, float('inf'), 0, None)
+    Node_2 = Node.Node('2', 2, True, (.4, 2), 60, None, None, float('inf'), 0, None)
+    Node_3 = Node.Node('3', 3, True, (.8, 2), 70, None, None, float('inf'), 0, None)
     Node_4 = Node.Node('4', 4, False, (.4, 1.8), 30, None, None, float('inf'), 0, None)
     Node_5 = Node.Node('5', 5, False, (.8, 1.8), 30, None, None, float('inf'), 0, None)
     Node_6 = Node.Node('6', 6, False, (.1, 1.5), 40, None, None, float('inf'), 0, None)
     Node_7 = Node.Node('7', 7, False, (.4, 1.5), 30, None, None, float('inf'), 0, None)
     Node_8 = Node.Node('8', 8, False, (.8, 1.5), 10, None, None, float('inf'), 0, None)
     Node_9 = Node.Node('9', 9, False, (1.33, 1.5), 20, None, None, float('inf'), 0, None)
-    Node_10 = Node.Node('10', 10, False, (1.5, 1.5), 70, None, None, float('inf'), 0, None)
+    Node_10 = Node.Node('10', 10, True, (1.5, 1.5), 70, None, None, float('inf'), 0, None)
     # Start Node
     Node_11 = Node.Node('11', 11, False, (.1, 1), 30, None, None, 0, 0, 0)
 
@@ -136,7 +138,7 @@ def main():
     Node_15 = Node.Node('15', 15, False, (.8, .8), 10, None, None, float('inf'), 0, None)
     Node_16 = Node.Node('16', 16, False, (1, .8), 10, None, None, float('inf'), 0, None)
     Node_17 = Node.Node('17', 17, False, (1.4, .8), 10, None, None, float('inf'), 0, None)
-    Node_18 = Node.Node('18', 18, False, (1.8, .8), 70, None, None, float('inf'), 0, None)
+    Node_18 = Node.Node('18', 18, True, (1.8, .8), 70, None, None, float('inf'), 0, None)
     Node_19 = Node.Node('19', 19, False, (.5, .6), 30, None, None, float('inf'), 0, None)
     Node_20 = Node.Node('20', 20, False, (1.4, .6), 30, None, None, float('inf'), 0, None)
     Node_21 = Node.Node('21', 21, False, (1.7, .6), 30, None, None, float('inf'), 0, None)
@@ -158,7 +160,7 @@ def main():
     Node_35 = Node.Node('35', 35, False, (1.4, .15), 30, None, None, float('inf'), 0, None)
     Node_36 = Node.Node('36', 36, False, (1, 0), 30, None, None, float('inf'), 0, None)
     Node_37 = Node.Node('37', 37, False, (0, 1.5), 10, None, None, float('inf'), 0, None)
-    Node_38 = Node.Node('38', 38, False, (2, .3), 55, None, None, float('inf'), 0, None)
+    Node_38 = Node.Node('38', 38, True, (2, .3), 55, None, None, float('inf'), 0, None)
     Node_39 = Node.Node('39', 39, False, (1.8, .3), 30, None, None, float('inf'), 0, None)
     Node_40 = Node.Node('40', 40, False, (1.8, 0), 30, None, None, float('inf'), 0, None)
     Node_41 = Node.Node('41', 41, False, (1.4, .3), 30, None, None, float('inf'), 0, None)
